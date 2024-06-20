@@ -16,7 +16,7 @@ export type Transactable<TFunc extends AsyncFunctionType<any, any>> = TFunc & {
   via: (tx: Tx) => TFunc;
 };
 
-export const polytransactable = <TArgs extends any[], TReturn>(
+export const transactable = <TArgs extends any[], TReturn>(
   operation: Operation<TArgs, TReturn>
 ): Transactable<AsyncFunctionType<TArgs, TReturn>> => {
   const instant = (...args: TArgs) =>

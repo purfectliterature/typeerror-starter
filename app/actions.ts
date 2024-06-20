@@ -1,10 +1,10 @@
 "use server";
 
 import prisma from "@/lib/prisma";
-import { polytransactable } from "./transactions";
+import { transactable } from "./transactions";
 import { revalidatePath } from "next/cache";
 
-export const createUser = polytransactable(
+export const createUser = transactable(
   (tx) => async (name: string, email: string) => {
     const user = await tx.user.create({ data: { name, email } });
     await tx.log.create({ data: { message: `User ${user.id} created` } });
